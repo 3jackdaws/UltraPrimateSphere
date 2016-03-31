@@ -17,19 +17,21 @@ public class QuadMovement : MonoBehaviour {
     private UnityEngine.UI.Text debug;
     public bool DebugText = true;
     private bool canJump = true;
-    private int frametimer = 0;
+	public int air_movement_speed = 10;
     private float distToGround;
+	private Vector3 facing2D;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+		rb = transform.parent.GetComponent<Rigidbody>();
         gui = GameObject.Find("DebugFacing");
-        facing = new Vector3(1, 0, 0);
+        facing = facing2D = new Vector3(1, 0, 0);
         Physics.gravity = new Vector3(0, -gravity, 0);
         mesh = GetComponent<Collider>();
         rb.maxAngularVelocity = 100;
         debug = gui.GetComponent<Text>();
         distToGround = GetComponent<Collider>().bounds.extents.y;
+		debug.text = "Test";
     }
 
     private bool isGrounded(){
@@ -49,8 +51,6 @@ void Update()
 
     void FixedUpdate()
     {
-        
-
         float force = speed * rb.mass;
         float strafeX = Input.GetAxis("Vertical");
         float strafeY = Input.GetAxis("Horizontal");
@@ -70,23 +70,25 @@ void Update()
             }
                 
         }
+		Vector3 movementVector = new Vector3 (strafeX, 0, strafeY);
 
+		facing2D = Quaternion.Euler (0, 5 * mouseX, 0) * facing2D;
         facing = Quaternion.Euler(0, 5 * mouseX, 0) * facing;
-        Vector3 torqueVector = Quaternion.AngleAxis(-90, Vector3.down) * facing;
+        Vector3 torqueVector = Quaternion.AngleAxis(-90, Vector3.down) * facing2D;
         facing = facing + Vector3.up*mouseY;
         facing.Normalize();
-        Quaternion facingAngle = new Quaternion();
-        facingAngle.eulerAngles = facing;
-        rb.AddTorque(torqueVector + torqueVector*strafeX*force - facing*strafeY*force);
+
+		rb.AddTorque(torqueVector*strafeX*force - facing2D*strafeY*force);
+		rb.AddForce (-torqueVector*strafeY*air_movement_speed - facing2D*strafeX*air_movement_speed);
         
 
         //this.transform.Rotate(torqueVector, 15*forward*speed);
 
 
-        //if (DebugText)
-           // debug.text = "V: " + forward + " H: " + turn + " Facing: " + facing + "\nApplied torque: " +
-                         //torqueVector.magnitude * forward * force + " Rotation Velocity: " + rb.angularVelocity.magnitude;
-        //else
+        if (DebugText)
+			debug.text = "V: " + strafeY + " H: " + strafeX + " Facing: " + facing2D + "\nApplied torque: " +
+				torqueVector.magnitude * strafeY * force + " Rotation Velocity: " + rb.angularVelocity.magnitude;
+       // else
             //debug.text = "";
     }
 

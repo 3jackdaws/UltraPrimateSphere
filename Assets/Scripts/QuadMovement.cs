@@ -20,6 +20,7 @@ public class QuadMovement : MonoBehaviour {
 	public int air_movement_speed = 10;
     private float distToGround;
 	private Vector3 facing2D;
+	private Vector3 initialPosition;
 
     void Start()
     {
@@ -32,21 +33,28 @@ public class QuadMovement : MonoBehaviour {
         debug = gui.GetComponent<Text>();
         distToGround = GetComponent<Collider>().bounds.extents.y;
 		debug.text = "Test";
+		initialPosition = rb.transform.position;
     }
 
     private bool isGrounded(){
         return Physics.Raycast(transform.transform.position, -Vector3.up, distToGround);
     }
 
-void Update()
+	void Update()
     {
         if (Input.GetKeyDown("escape"))
             Cursor.lockState = CursorLockMode.None;
         if (Input.GetMouseButtonDown(0))
             Cursor.lockState = CursorLockMode.Locked;
-
+		if (Input.GetKeyDown (KeyCode.R)) {
+			Reset ();
+		}
     }
 
+	void Reset()
+	{
+		rb.transform.position = initialPosition;
+	}
   
 
     void FixedUpdate()
@@ -79,7 +87,7 @@ void Update()
         facing.Normalize();
 
 		rb.AddTorque(torqueVector*strafeX*force - facing2D*strafeY*force);
-		rb.AddForce (-torqueVector*strafeY*air_movement_speed - facing2D*strafeX*air_movement_speed);
+		rb.AddForce (torqueVector*strafeY*air_movement_speed + facing2D*strafeX*air_movement_speed);
         
 
         //this.transform.Rotate(torqueVector, 15*forward*speed);

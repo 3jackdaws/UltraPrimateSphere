@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Timers;
 using UnityEditor.VersionControl;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Timer = System.Threading.Timer;
 
@@ -37,7 +38,8 @@ public class QuadMovement : MonoBehaviour {
     }
 
     private bool isGrounded(){
-        return Physics.Raycast(transform.transform.position, -Vector3.up, distToGround);
+        return Physics.Raycast(transform.transform.position, -Vector3.up, distToGround+0.05f);
+
     }
 
 	void Update()
@@ -49,6 +51,10 @@ public class QuadMovement : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.R)) {
 			Reset ();
 		}
+	    if (Input.GetAxis("Fire1") == 1)
+	    {
+	        Shoot();
+	    }
     }
 
 	void Reset()
@@ -69,7 +75,12 @@ public class QuadMovement : MonoBehaviour {
             mouseX = Input.GetAxis("Mouse X");
             mouseY = 0.1f*Input.GetAxis("Mouse Y");
         }
-        if (Input.GetKey(KeyCode.Space))
+        else
+        {
+            mouseX = Input.GetAxis("CameraHorizontal");
+            mouseY = 0.05f * Input.GetAxis("CameraVertical");
+        }
+        if (Input.GetAxis("Jump") > 0)
         {
 
             if (isGrounded())
@@ -94,14 +105,20 @@ public class QuadMovement : MonoBehaviour {
 
 
         if (DebugText)
-			debug.text = "V: " + strafeY + " H: " + strafeX + " Facing: " + facing2D + "\nApplied torque: " +
-				torqueVector.magnitude * strafeY * force + " Rotation Velocity: " + rb.angularVelocity.magnitude;
-       // else
-            //debug.text = "";
+            debug.text = mouseX.ToString() + "     " + Input.GetAxis("Jump");
+        // else
+        //debug.text = "";
     }
 
     public Vector3 GetFacing()
     {
         return facing;
     }
+
+    private void Shoot()
+    {
+        
+    }
 }
+
+

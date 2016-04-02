@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: 5d8cc140d3d181e43b942f4804bf31ed
+timeCreated: 1459582306
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Circle
+    100002: Circle.001
+    100004: Circle.002
+    100006: Circle.003
+    100008: Circle.004
+    100010: Circle.005
+    100012: Circle.006
+    100014: Circle.007
+    100016: Circle.008
+    100018: LightPad
+    100020: LightPad.001
+    100022: LightRing
+    100024: LightRing.001
+    100026: //RootNode
+    100028: MeshRing
+    100030: MeshRing.001
+    100032: SlidePiston
+    100034: SlidePiston.001
+    100036: SpawnCylinder
+    100038: SpawnCylinder.001
+    100040: SpawnPad
+    100042: SpawnPad.001
+    100044: StartRun
+    100046: StartRun.001
+    100048: StartRun.006
+    100050: StartRun.011
+    100052: StartRun.012
+    400000: Circle
+    400002: Circle.001
+    400004: Circle.002
+    400006: Circle.003
+    400008: Circle.004
+    400010: Circle.005
+    400012: Circle.006
+    400014: Circle.007
+    400016: Circle.008
+    400018: LightPad
+    400020: LightPad.001
+    400022: LightRing
+    400024: LightRing.001
+    400026: //RootNode
+    400028: MeshRing
+    400030: MeshRing.001
+    400032: SlidePiston
+    400034: SlidePiston.001
+    400036: SpawnCylinder
+    400038: SpawnCylinder.001
+    400040: SpawnPad
+    400042: SpawnPad.001
+    400044: StartRun
+    400046: StartRun.001
+    400048: StartRun.006
+    400050: StartRun.011
+    400052: StartRun.012
+    2300000: Circle
+    2300002: Circle.001
+    2300004: Circle.002
+    2300006: Circle.003
+    2300008: Circle.004
+    2300010: Circle.005
+    2300012: Circle.006
+    2300014: Circle.007
+    2300016: Circle.008
+    2300018: LightPad
+    2300020: LightPad.001
+    2300022: LightRing
+    2300024: LightRing.001
+    2300026: MeshRing
+    2300028: MeshRing.001
+    2300030: SlidePiston
+    2300032: SlidePiston.001
+    2300034: SpawnCylinder
+    2300036: SpawnCylinder.001
+    2300038: SpawnPad
+    2300040: SpawnPad.001
+    2300042: StartRun
+    2300044: StartRun.001
+    2300046: StartRun.006
+    2300048: StartRun.011
+    2300050: StartRun.012
+    3300000: Circle
+    3300002: Circle.001
+    3300004: Circle.002
+    3300006: Circle.003
+    3300008: Circle.004
+    3300010: Circle.005
+    3300012: Circle.006
+    3300014: Circle.007
+    3300016: Circle.008
+    3300018: LightPad
+    3300020: LightPad.001
+    3300022: LightRing
+    3300024: LightRing.001
+    3300026: MeshRing
+    3300028: MeshRing.001
+    3300030: SlidePiston
+    3300032: SlidePiston.001
+    3300034: SpawnCylinder
+    3300036: SpawnCylinder.001
+    3300038: SpawnPad
+    3300040: SpawnPad.001
+    3300042: StartRun
+    3300044: StartRun.001
+    3300046: StartRun.006
+    3300048: StartRun.011
+    3300050: StartRun.012
+    4300000: StartRun.012
+    4300002: StartRun.011
+    4300004: StartRun.006
+    4300006: Circle.008
+    4300008: Circle.007
+    4300010: Circle.006
+    4300012: Circle.005
+    4300014: Circle.004
+    4300016: Circle.003
+    4300018: Circle.002
+    4300020: StartRun.001
+    4300022: SpawnPad.001
+    4300024: LightRing.001
+    4300026: LightPad.001
+    4300028: MeshRing.001
+    4300030: SpawnCylinder.001
+    4300032: SlidePiston.001
+    4300034: Circle.001
+    4300036: Circle
+    4300038: SlidePiston
+    4300040: SpawnCylinder
+    4300042: MeshRing
+    4300044: LightPad
+    4300046: LightRing
+    4300048: SpawnPad
+    4300050: StartRun
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

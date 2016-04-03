@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Timers;
 using UnityEngine.EventSystems;
@@ -29,6 +30,7 @@ public class QuadMovement : MonoBehaviour {
     public float boost_recharge;
     public AudioClip jump_sound;
     private IPowerUp heldPowerup;
+    private Vector3 jumpVector;
 
     void Start()
     {
@@ -42,15 +44,39 @@ public class QuadMovement : MonoBehaviour {
         distToGround = GetComponent<Collider>().bounds.extents.y;
 		//debug.text = "Test";
 		initialPosition = rb.transform.position;
+        InvokeRepeating("IfGrounded", 2, 0.3F);
     }
 
-    public bool isGrounded(){
-        return Physics.Raycast(transform.transform.position, -Vector3.up, distToGround+0.05f);
+    public bool isGrounded()
+    {
+       // RaycastHit hitInfo = new RaycastHit();
+        return Physics.Raycast(transform.transform.position, Vector3.down, distToGround + 0.03f);
+        //jumpVector = Vector3.zero;
+        //if (hitInfo.distance > 0)
+        //{
+        //    //if(transform.transform.position.y > initialPosition.y+5)
+        //    //    Console.WriteLine("Oh hai");
+        //    Vector3 v = transform.transform.position - hitInfo.collider.ClosestPointOnBounds(transform.transform.position);
+        //    if (v.magnitude < distToGround + 0.1f)
+        //        return true;
+        //    return false;
+        //} 
+        //else
+        //{
+        //    return false;
+        //}
+        //Physics.Raycast(transform.transform.position, Vector3.down, distToGround+0.02f);
+    }
+
+    private void IfGrounded()
+    {
+        if (isGrounded())
+            canJump = true;
     }
 
     public bool isRolling()
     {
-        return Physics.Raycast(transform.transform.position, -Vector3.up, distToGround + 0.2f);
+        return Physics.Raycast(transform.transform.position, -Vector3.up, distToGround + 0.5f);
     }
 
 	void Update()
@@ -75,6 +101,7 @@ public class QuadMovement : MonoBehaviour {
             if(heldPowerup != null)
 	            heldPowerup.UsePowerUp(this.gameObject, heldPowerup);
 	    }
+	    
     }
 
 	void Reset()
@@ -83,7 +110,26 @@ public class QuadMovement : MonoBehaviour {
 	    rb.angularVelocity = Vector3.zero;
 	    rb.velocity = Vector3.zero;
 	}
-  
+
+    void OnGUI()
+    {
+        int w = Screen.width, h = Screen.height;
+
+        GUIStyle style = new GUIStyle();
+
+        Rect rect = new Rect(0, 0, w, h * 2 / 100);
+        string text = "NULL";
+        style.alignment = TextAnchor.UpperLeft;
+        style.fontSize = h * 2 / 100;
+        style.normal.textColor = new Color(0.0f, 0.0f, 0.5f, 1.0f);
+        RaycastHit hitinfo = new RaycastHit();
+        Physics.Raycast(new Ray(transform.transform.position, Vector3.down*100), out hitinfo);
+        Debug.DrawRay(transform.transform.position, Vector3.down * 100);
+        if (!hitinfo.Equals(null))
+            text = hitinfo.distance.ToString();
+        GUI.Label(rect, text, style);
+    }
+
 
     void FixedUpdate()
     {
@@ -152,21 +198,36 @@ public class QuadMovement : MonoBehaviour {
         }
     }
 
+    void OnCollisionEnter(Collider other)
+    {
+        canJump = true;
+    }
+
+    void OnCollisionExit(Collider other)
+    {
+        canJump = false;
+    }
+
     private void Jump()
     {
-        if (canJump && isGrounded())
+        if (canJump)
         {
             canJump = false;
 
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += (Object, args) => { canJump = true; };
-            aTimer.Interval = 100;
+            aTimer.Interval = 200;
             aTimer.AutoReset = false;
-            aTimer.Start();
-            rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
-            boostOut.volume = 0.8f;
-            boostOut.pitch = 1f;
-            boostOut.PlayOneShot(jump_sound);
+            //aTimer.Start();
+            //if (jumpVector.magnitude > 0.1)
+            //{
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
+                boostOut.volume = 0.8f;
+                boostOut.pitch = 1f;
+                boostOut.PlayOneShot(jump_sound);
+            //}
+            
         }
     }
 
@@ -179,6 +240,16 @@ public class QuadMovement : MonoBehaviour {
     private void ResetBoolean(object Object, ElapsedEventArgs args)
     {
         canJump = true;
+    }
+
+    public void SetJump(bool val)
+    {
+        canJump = val;
+    }
+
+    public void SetJumpVector(Vector3 vect)
+    {
+        jumpVector = vect;
     }
 }
 

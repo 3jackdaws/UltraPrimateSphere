@@ -2,23 +2,25 @@
 using UnityEngine;
 using System.Collections;
 
-public class PowerupSuperspeed : MonoBehaviour, IPowerUp {
+public class PowerupJump : MonoBehaviour, IPowerUp
+{
 
-	// Use this for initialization
-    public int super_speed_force;
+    // Use this for initialization
+    public int jump_force;
     public int respawn_time;
     public AudioSource player_object;
     public AudioClip pick_up_sound;
     public AudioClip use_sound;
-	void Start () {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	    transform.transform.rotation = Quaternion.AngleAxis(0.5f, Vector3.up) * transform.rotation;
-	}
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.transform.rotation = Quaternion.AngleAxis(0.5f, Vector3.up) * transform.rotation;
+    }
 
     void OnCollisionEnter(Collision cevent)
     {
@@ -42,7 +44,7 @@ public class PowerupSuperspeed : MonoBehaviour, IPowerUp {
 
     public void UsePowerUp(GameObject gObject, IPowerUp powerUp)
     {
-        gObject.GetComponentInParent<Rigidbody>().AddForce(gObject.GetComponent<QuadMovement>().GetFacing2D() * super_speed_force, ForceMode.Impulse);
+        gObject.GetComponentInParent<Rigidbody>().AddForce(Vector3.up * jump_force, ForceMode.Impulse);
         player_object.volume = 0.9f;
         player_object.pitch = 0.7f;
         player_object.PlayOneShot(use_sound);

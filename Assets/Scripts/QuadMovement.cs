@@ -31,13 +31,15 @@ public class QuadMovement : MonoBehaviour {
     public AudioClip jump_sound;
     private IPowerUp heldPowerup;
     private Vector3 jumpVector;
+    public float boost_value;
+    private System.Timers.Timer boostTimer;
 
     void Start()
     {
 		rb = transform.parent.GetComponent<Rigidbody>();
         gui = GameObject.Find("DebugFacing");
         facing = facing2D = new Vector3(1, 0, 0);
-        Physics.gravity = new Vector3(0, -gravity, 0);
+        //Physics.gravity = new Vector3(0, -gravity, 0);
         mesh = GetComponent<Collider>();
         rb.maxAngularVelocity = 100;
         //debug = gui.GetComponent<Text>();
@@ -45,6 +47,8 @@ public class QuadMovement : MonoBehaviour {
 		//debug.text = "Test";
 		initialPosition = rb.transform.position;
         InvokeRepeating("IfGrounded", 2, 0.3F);
+        InvokeRepeating("RechargeBoost", 1, 0.08f);
+       
     }
 
     public bool isGrounded()
@@ -81,27 +85,9 @@ public class QuadMovement : MonoBehaviour {
 
 	void Update()
     {
-        if (Input.GetKeyDown("escape"))
-            Cursor.lockState = CursorLockMode.None;
-        if (Input.GetMouseButtonDown(0))
-            Cursor.lockState = CursorLockMode.Locked;
-		//if (Input.GetButtonDown("select")) {
-		//	Reset ();
-		//}
-	    if (Input.GetButtonDown("Boost"))
-	    {
-	        Boost();
-	    }
-        if (Input.GetAxis("Jump") > 0)
-        {
-            Jump();
-        }
-	    if (Input.GetAxis("PowerUp") > 0)
-	    {
-            if(heldPowerup != null)
-	            heldPowerup.UsePowerUp(this.gameObject, heldPowerup);
-	    }
+        
 	    
+
     }
 
 	void Reset()
@@ -133,6 +119,26 @@ public class QuadMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if (Input.GetKeyDown("escape"))
+            Cursor.lockState = CursorLockMode.None;
+        if (Input.GetMouseButtonDown(0))
+            Cursor.lockState = CursorLockMode.Locked;
+        //if (Input.GetButtonDown("select")) {
+        //	Reset ();
+        //}
+        if (Input.GetButtonDown("Boost"))
+        {
+            Boost();
+        }
+        if (Input.GetAxis("Jump") > 0)
+        {
+            Jump();
+        }
+        if (Input.GetAxis("PowerUp") > 0)
+        {
+            if (heldPowerup != null)
+                heldPowerup.UsePowerUp(this.gameObject, heldPowerup);
+        }
         float force = speed * rb.mass;
         
         float strafeX = Input.GetAxis("Vertical");
@@ -152,8 +158,9 @@ public class QuadMovement : MonoBehaviour {
         
 		Vector3 movementVector = new Vector3 (strafeX, 0, strafeY);
 
-		facing2D = Quaternion.Euler (0, 5 * mouseX, 0) * facing2D;
+		
         facing = Quaternion.Euler(0, 5 * mouseX, 0) * facing;
+        facing2D = new Vector3(facing.x, 0, facing.z);
         Vector3 torqueVector = Quaternion.AngleAxis(-90, Vector3.down) * facing2D;
         facing = facing + Vector3.up*mouseY;
         facing.Normalize();
@@ -182,18 +189,14 @@ public class QuadMovement : MonoBehaviour {
 
     private void Boost()
     {
-        if (canBoost)
+        if (boost_value >= 1)
         {
-            canBoost = false;
+            boost_value = 0;
             boostOut.volume = 0.8f;
             boostOut.pitch = 1f;
             boostOut.PlayOneShot(boost_sound);
             ParticleSystem boost = (ParticleSystem)Instantiate(boost_effect, transform.position, boost_effect.transform.rotation);
-            System.Timers.Timer aTimer = new System.Timers.Timer();
-            aTimer.Elapsed += (Object, args) => { canBoost = true;};
-            aTimer.Interval = boost_recharge*1000;
-            aTimer.AutoReset = false;
-            aTimer.Start();
+            //StartCoroutine(RechargeBoost());
             rb.AddForce(Vector3.up * boost_force, ForceMode.Impulse);
         }
     }
@@ -250,6 +253,22 @@ public class QuadMovement : MonoBehaviour {
     public void SetJumpVector(Vector3 vect)
     {
         jumpVector = vect;
+    }
+
+    public float GetBoostValue()
+    {
+        return boost_value;
+    }
+
+    private void RechargeBoost()
+    {
+        if(boost_value < 1)
+            boost_value += 0.02f;
+    }
+
+    public void SetFacingVector(Vector3 v)
+    {
+        facing = v;
     }
 }
 

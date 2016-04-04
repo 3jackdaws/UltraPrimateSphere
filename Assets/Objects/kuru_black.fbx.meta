@@ -1,0 +1,356 @@
+fileFormatVersion: 2
+guid: 335e8fe326565d64898b2882ddc45bb9
+timeCreated: 1459725933
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Accet Tip
+    100002: Accet Tip.001
+    100004: Barrel
+    100006: Barrel.001
+    100008: Barrel_MeshPart0
+    100010: Barrel_MeshPart1
+    100012: Bmid
+    100014: Camera
+    100016: Circle
+    100018: Clip.001
+    100020: clipDupe
+    100022: cONCEAL
+    100024: cONCEAL.001
+    100026: ERASER
+    100028: erasercap
+    100030: //RootNode
+    100032: KuruToga Engine
+    100034: KuruToga Engine.001
+    100036: KuruToga Engine.002
+    100038: KuruToga Engine.003
+    100040: KuruToga Top
+    100042: KuruToga Top.001
+    100044: KuruToga Top.002
+    100046: KuruToga Top.003
+    100048: KuruToga Top.004
+    100050: KuruToga Top.005
+    100052: KuruToga Top.006
+    100054: Plane
+    100056: Spring
+    100058: Spring.001
+    100060: Tip
+    100062: Tip.001
+    100064: Tip.001_MeshPart0
+    100066: Tip.001_MeshPart1
+    100068: Tip.001_MeshPart10
+    100070: Tip.001_MeshPart11
+    100072: Tip.001_MeshPart12
+    100074: Tip.001_MeshPart2
+    100076: Tip.001_MeshPart3
+    100078: Tip.001_MeshPart4
+    100080: Tip.001_MeshPart5
+    100082: Tip.001_MeshPart6
+    100084: Tip.001_MeshPart7
+    100086: Tip.001_MeshPart8
+    100088: Tip.001_MeshPart9
+    100090: Tip_MeshPart0
+    100092: Tip_MeshPart1
+    100094: Tip_MeshPart10
+    100096: Tip_MeshPart11
+    100098: Tip_MeshPart12
+    100100: Tip_MeshPart2
+    100102: Tip_MeshPart3
+    100104: Tip_MeshPart4
+    100106: Tip_MeshPart5
+    100108: Tip_MeshPart6
+    100110: Tip_MeshPart7
+    100112: Tip_MeshPart8
+    100114: Tip_MeshPart9
+    100116: TipActuator
+    100118: TipActuator.001
+    400000: Accet Tip
+    400002: Accet Tip.001
+    400004: Barrel
+    400006: Barrel.001
+    400008: Barrel_MeshPart0
+    400010: Barrel_MeshPart1
+    400012: Bmid
+    400014: Camera
+    400016: Circle
+    400018: Clip.001
+    400020: clipDupe
+    400022: cONCEAL
+    400024: cONCEAL.001
+    400026: ERASER
+    400028: erasercap
+    400030: //RootNode
+    400032: KuruToga Engine
+    400034: KuruToga Engine.001
+    400036: KuruToga Engine.002
+    400038: KuruToga Engine.003
+    400040: KuruToga Top
+    400042: KuruToga Top.001
+    400044: KuruToga Top.002
+    400046: KuruToga Top.003
+    400048: KuruToga Top.004
+    400050: KuruToga Top.005
+    400052: KuruToga Top.006
+    400054: Plane
+    400056: Spring
+    400058: Spring.001
+    400060: Tip
+    400062: Tip.001
+    400064: Tip.001_MeshPart0
+    400066: Tip.001_MeshPart1
+    400068: Tip.001_MeshPart10
+    400070: Tip.001_MeshPart11
+    400072: Tip.001_MeshPart12
+    400074: Tip.001_MeshPart2
+    400076: Tip.001_MeshPart3
+    400078: Tip.001_MeshPart4
+    400080: Tip.001_MeshPart5
+    400082: Tip.001_MeshPart6
+    400084: Tip.001_MeshPart7
+    400086: Tip.001_MeshPart8
+    400088: Tip.001_MeshPart9
+    400090: Tip_MeshPart0
+    400092: Tip_MeshPart1
+    400094: Tip_MeshPart10
+    400096: Tip_MeshPart11
+    400098: Tip_MeshPart12
+    400100: Tip_MeshPart2
+    400102: Tip_MeshPart3
+    400104: Tip_MeshPart4
+    400106: Tip_MeshPart5
+    400108: Tip_MeshPart6
+    400110: Tip_MeshPart7
+    400112: Tip_MeshPart8
+    400114: Tip_MeshPart9
+    400116: TipActuator
+    400118: TipActuator.001
+    2300000: Accet Tip
+    2300002: Accet Tip.001
+    2300004: Barrel.001
+    2300006: Barrel_MeshPart0
+    2300008: Barrel_MeshPart1
+    2300010: Bmid
+    2300012: Circle
+    2300014: Clip.001
+    2300016: clipDupe
+    2300018: cONCEAL
+    2300020: cONCEAL.001
+    2300022: ERASER
+    2300024: erasercap
+    2300026: KuruToga Engine
+    2300028: KuruToga Engine.001
+    2300030: KuruToga Engine.002
+    2300032: KuruToga Engine.003
+    2300034: KuruToga Top
+    2300036: KuruToga Top.001
+    2300038: KuruToga Top.002
+    2300040: KuruToga Top.003
+    2300042: KuruToga Top.004
+    2300044: KuruToga Top.005
+    2300046: KuruToga Top.006
+    2300048: Plane
+    2300050: Spring
+    2300052: Spring.001
+    2300054: Tip.001_MeshPart0
+    2300056: Tip.001_MeshPart1
+    2300058: Tip.001_MeshPart10
+    2300060: Tip.001_MeshPart11
+    2300062: Tip.001_MeshPart12
+    2300064: Tip.001_MeshPart2
+    2300066: Tip.001_MeshPart3
+    2300068: Tip.001_MeshPart4
+    2300070: Tip.001_MeshPart5
+    2300072: Tip.001_MeshPart6
+    2300074: Tip.001_MeshPart7
+    2300076: Tip.001_MeshPart8
+    2300078: Tip.001_MeshPart9
+    2300080: Tip_MeshPart0
+    2300082: Tip_MeshPart1
+    2300084: Tip_MeshPart10
+    2300086: Tip_MeshPart11
+    2300088: Tip_MeshPart12
+    2300090: Tip_MeshPart2
+    2300092: Tip_MeshPart3
+    2300094: Tip_MeshPart4
+    2300096: Tip_MeshPart5
+    2300098: Tip_MeshPart6
+    2300100: Tip_MeshPart7
+    2300102: Tip_MeshPart8
+    2300104: Tip_MeshPart9
+    2300106: TipActuator
+    2300108: TipActuator.001
+    3300000: Accet Tip
+    3300002: Accet Tip.001
+    3300004: Barrel.001
+    3300006: Barrel_MeshPart0
+    3300008: Barrel_MeshPart1
+    3300010: Bmid
+    3300012: Circle
+    3300014: Clip.001
+    3300016: clipDupe
+    3300018: cONCEAL
+    3300020: cONCEAL.001
+    3300022: ERASER
+    3300024: erasercap
+    3300026: KuruToga Engine
+    3300028: KuruToga Engine.001
+    3300030: KuruToga Engine.002
+    3300032: KuruToga Engine.003
+    3300034: KuruToga Top
+    3300036: KuruToga Top.001
+    3300038: KuruToga Top.002
+    3300040: KuruToga Top.003
+    3300042: KuruToga Top.004
+    3300044: KuruToga Top.005
+    3300046: KuruToga Top.006
+    3300048: Plane
+    3300050: Spring
+    3300052: Spring.001
+    3300054: Tip.001_MeshPart0
+    3300056: Tip.001_MeshPart1
+    3300058: Tip.001_MeshPart10
+    3300060: Tip.001_MeshPart11
+    3300062: Tip.001_MeshPart12
+    3300064: Tip.001_MeshPart2
+    3300066: Tip.001_MeshPart3
+    3300068: Tip.001_MeshPart4
+    3300070: Tip.001_MeshPart5
+    3300072: Tip.001_MeshPart6
+    3300074: Tip.001_MeshPart7
+    3300076: Tip.001_MeshPart8
+    3300078: Tip.001_MeshPart9
+    3300080: Tip_MeshPart0
+    3300082: Tip_MeshPart1
+    3300084: Tip_MeshPart10
+    3300086: Tip_MeshPart11
+    3300088: Tip_MeshPart12
+    3300090: Tip_MeshPart2
+    3300092: Tip_MeshPart3
+    3300094: Tip_MeshPart4
+    3300096: Tip_MeshPart5
+    3300098: Tip_MeshPart6
+    3300100: Tip_MeshPart7
+    3300102: Tip_MeshPart8
+    3300104: Tip_MeshPart9
+    3300106: TipActuator
+    3300108: TipActuator.001
+    4300000: Plane
+    4300002: Barrel_MeshPart0
+    4300004: Barrel_MeshPart1
+    4300006: erasercap
+    4300008: Bmid
+    4300010: clipDupe
+    4300012: KuruToga Top.006
+    4300014: KuruToga Top.002
+    4300016: cONCEAL
+    4300018: KuruToga Engine.001
+    4300020: KuruToga Top
+    4300022: KuruToga Engine
+    4300024: Spring
+    4300026: Accet Tip
+    4300028: TipActuator
+    4300030: Tip_MeshPart0
+    4300032: Tip_MeshPart1
+    4300034: Tip_MeshPart2
+    4300036: Tip_MeshPart3
+    4300038: Tip_MeshPart4
+    4300040: Tip_MeshPart5
+    4300042: Tip_MeshPart6
+    4300044: Tip_MeshPart7
+    4300046: Tip_MeshPart8
+    4300048: Tip_MeshPart9
+    4300050: Tip_MeshPart10
+    4300052: Tip_MeshPart11
+    4300054: Tip_MeshPart12
+    4300056: Barrel.001
+    4300058: KuruToga Top.001
+    4300060: ERASER
+    4300062: KuruToga Top.003
+    4300064: Clip.001
+    4300066: KuruToga Top.004
+    4300068: cONCEAL.001
+    4300070: KuruToga Engine.002
+    4300072: KuruToga Top.005
+    4300074: KuruToga Engine.003
+    4300076: Spring.001
+    4300078: Accet Tip.001
+    4300080: TipActuator.001
+    4300082: Tip.001_MeshPart0
+    4300084: Tip.001_MeshPart1
+    4300086: Tip.001_MeshPart2
+    4300088: Tip.001_MeshPart3
+    4300090: Tip.001_MeshPart4
+    4300092: Tip.001_MeshPart5
+    4300094: Tip.001_MeshPart6
+    4300096: Tip.001_MeshPart7
+    4300098: Tip.001_MeshPart8
+    4300100: Tip.001_MeshPart9
+    4300102: Tip.001_MeshPart10
+    4300104: Tip.001_MeshPart11
+    4300106: Tip.001_MeshPart12
+    4300108: Circle
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

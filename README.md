@@ -1,7 +1,9 @@
 # UltraPrimateSphere
 <p>Ultra Primate Sphere is the working name for a physics based marble roller ball game created in Unity.  The goal of the game is to get the starting marble player object to the end of the level.  
+</p>
 
 <h2>Game Engine</h2>
+
 
 ![UnityLogo](http://forum.unity3d.com/attachments/logo-titled-png.16698/)
 

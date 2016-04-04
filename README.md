@@ -3,7 +3,8 @@
 
 <h2>Game Engine</h2>
 
-![Unity Logo](http://forum.unity3d.com/attachments/logo-titled-png.16698/)
+![UnityLogo](http://forum.unity3d.com/attachments/logo-titled-png.16698/)
+
 <p>I've never used Unity before, so all its features as well as its user interface is new to me.  However, I can appreciate its ease of use.</p>
 
 <h2>Level Design</h2>

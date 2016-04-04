@@ -5,7 +5,7 @@
 <h2>Game Engine</h2>
 
 
-![](http://isogen.net/img/unity_logo.png =400x)
+![](http://isogen.net/img/unity_logo.png =400x200)
 
 <p>I've never used Unity before, so all its features as well as its user interface is new to me.  However, I can appreciate its ease of use.</p>
 

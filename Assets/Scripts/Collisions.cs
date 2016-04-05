@@ -13,7 +13,6 @@ public class Collisions : MonoBehaviour
     public Rigidbody track;
     public GameObject innerSphere;
     private QuadMovement movement_script;
-    private float prev_frame_pos;
     public float distance_check = 125;
 
     public int hitboost;
@@ -26,19 +25,16 @@ public class Collisions : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
 	{
-	   source.pitch = 0.6f + track.velocity.magnitude / 100;
-       source.volume = track.velocity.magnitude / 50;
+        source.pitch = 0.6f + track.velocity.magnitude / 100;
+        source.volume = track.velocity.magnitude / 50;
     }
 
     void OnCollisionEnter(Collision cevent)
     {
-        movement_script.SetJump(true);
+        movement_script.OnGround = true;
         Roll();
-        //Vector3 jumpVector = transform.transform.position - cevent.collider.ClosestPointOnBounds(transform.transform.position);
-        //Console.WriteLine(jumpVector);
-        //movement_script.SetJumpVector(jumpVector);
         if (cevent.impulse.magnitude > distance_check)
         {
             hitsource.volume = cevent.relativeVelocity.magnitude/50;
@@ -51,7 +47,7 @@ public class Collisions : MonoBehaviour
 
     void OnCollisionExit()
     {
-        movement_script.SetJump(false);
+        movement_script.OnGround = false;
         source.Pause();
     }
 
@@ -59,7 +55,5 @@ public class Collisions : MonoBehaviour
     {
         if (!source.isPlaying)
             source.UnPause();
-        //source.volume = track.velocity.magnitude / 100;
-        //source.pitch = 0.6f + track.velocity.magnitude / 100;
     }
 }

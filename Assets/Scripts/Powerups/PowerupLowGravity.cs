@@ -61,6 +61,11 @@ public class PowerupLowGravity : MonoBehaviour, IPowerUp {
         gObject.GetComponent<QuadMovement>().AddPowerUp(null);
     }
 
+    public string Name()
+    {
+        return "Anti-Gravity";
+    }
+
     IEnumerator ResetGravity()
     {
         yield return new WaitForSeconds(low_gravity_time);

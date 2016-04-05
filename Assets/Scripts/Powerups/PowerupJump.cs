@@ -62,4 +62,9 @@ public class PowerupJump : MonoBehaviour, IPowerUp
         player_object.PlayOneShot(use_sound);
         gObject.GetComponent<QuadMovement>().AddPowerUp(null);
     }
+
+    public string Name()
+    {
+        return "Super Jump";
+    }
 }

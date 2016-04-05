@@ -15,6 +15,7 @@ public class LevelLogic : MonoBehaviour
 	{
 	    spawnerInitialLocation = spawner.transform.position;
         player = GameObject.Find("Player");
+        player.GetComponentInChildren<QuadMovement>().SetInitialPos(spawnerInitialLocation + Vector3.up);
 	    
 	}
 	
@@ -26,7 +27,11 @@ public class LevelLogic : MonoBehaviour
 	    }
         if(player.transform.position.y < -20f)
             ResetLevel();
-	}
+        if (Input.GetKeyDown("escape"))
+            Cursor.lockState = CursorLockMode.None;
+        if (Input.GetMouseButtonDown(0))
+            Cursor.lockState = CursorLockMode.Locked;
+    }
 
     private void ResetLevel()
     {

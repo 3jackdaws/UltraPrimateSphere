@@ -13,12 +13,16 @@ public class StartMenu : MonoBehaviour
     public Canvas title;
     public Canvas MainMenu;
     public Scene level1;
-	// Use this for initialization
-	void Start ()
+    public string levelName;
+    public Canvas loadingScreen;
+    AsyncOperation async;
+    // Use this for initialization
+    void Start ()
 	{
 	    title.enabled = true;
 	    MainMenu.enabled = false;
-        audio_player.time = 423;
+        loadingScreen.enabled = false;
+        audio_player.time = 320;
     }
 	
 	// Update is called once per frame
@@ -32,6 +36,10 @@ public class StartMenu : MonoBehaviour
             Select();
         if (audio_player.isPlaying && audio_player.volume < 1)
 	        audio_player.volume += 0.01f;
+	    if (async != null)
+	    {
+	        Debug.LogWarning("Percent Load: " + async.progress);
+	    }
 	}
 
     public void GotoMainMenu()
@@ -45,14 +53,7 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        //AsyncOperation scene = SceneManager.LoadSceneAsync(1);
-        //scene.allowSceneActivation = true;
-        //while (!scene.isDone)
-        //{
-        //    Console.WriteLine("Progress: {0}", scene.progress);
-        //    yield;
-        //    ;
-        //}
+        StartLoading();
     }
 
     public void Select()
@@ -63,6 +64,30 @@ public class StartMenu : MonoBehaviour
     public void Move()
     {
         SFX.PlayOneShot(move);
+    }
+
+    
+
+    public void StartLoading()
+    {
+        loadingScreen.enabled = true;
+        title.enabled = false;
+        MainMenu.enabled = false;
+        StartCoroutine("load");
+    }
+
+    IEnumerator load()
+    {
+        Debug.LogWarning("ASYNC LOAD STARTED - " +
+           "DO NOT EXIT PLAY MODE UNTIL SCENE LOADS... UNITY WILL CRASH");
+        async = SceneManager.LoadSceneAsync(levelName);
+        async.allowSceneActivation = true;
+        yield return async;
+    }
+
+    public void ActivateScene()
+    {
+        async.allowSceneActivation = true;
     }
 
 

@@ -9,6 +9,10 @@
 
 <p>I've never used Unity before, so all its features as well as its user interface is new to me.  However, I can appreciate its ease of use.  All scripting is done is C#.</p>
 
+###Inspiration
+One of my favorite games is Super Monkey Ball 2 for the GameCube.  The game starts out relatively easy, but becomes increasingly difficult.  I couldn't even complete some of the levels until a year or two ago.
+![](http://revolutionmedia.ign.com/revolution/image/article/703/703834/super-monkey-ball-banana-blitz-20060428053706095.jpg)
+
 ###Level Design
 Levels feature floating platforms that must be traversed to reach the end, marked by a special platform.  Later levels feature moving platforms or obstacles that may knock the player off the map.  Players can use power-ups that are scattered throughout the levels to aid in their playthrough.  Some levels may require the use of a powerup, or may even require the use of multiple powerups in quick succession.
 

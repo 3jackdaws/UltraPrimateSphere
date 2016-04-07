@@ -2,7 +2,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Xml.Schema;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
@@ -16,27 +18,37 @@ public class StartMenu : MonoBehaviour
     public string levelName;
     public Canvas loadingScreen;
     AsyncOperation async;
+    public EventSystem controller;
+    private float audio_volume;
+    
     // Use this for initialization
     void Start ()
 	{
+        title.gameObject.SetActive(true);
 	    title.enabled = true;
-	    MainMenu.enabled = false;
+        audio_volume = 1;
+       
+	    MainMenu.gameObject.SetActive(false);
+        //MainMenu.GetComponents<Component>()[2].gameObject.SetActive(false);
+        controller.sendNavigationEvents = false;
         loadingScreen.enabled = false;
-        audio_player.time = 320;
+        audio_player.time = 320 ;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("start") && title.enabled)
+        if (Input.GetButtonDown("start") || Input.GetButtonDown("Jump") && title.enabled)
         {
             Select();
             GotoMainMenu();
+            controller.sendNavigationEvents = true;
+            controller.firstSelectedGameObject.GetComponent<Selectable>().Select();
         }
         if (Input.GetButtonDown("Jump"))
             Select();
-        if (audio_player.isPlaying && audio_player.volume < 1)
-	        audio_player.volume += 0.01f;
-	    if (async != null)
+        if (audio_player.isPlaying && audio_player.volume < audio_volume)
+            audio_player.volume += 0.01f;
+        if (async != null)
 	    {
 	        Debug.LogWarning("Percent Load: " + async.progress);
 	    }
@@ -47,7 +59,7 @@ public class StartMenu : MonoBehaviour
         audio_player.volume = 0;
         audio_player.Play();
         title.enabled = false;
-        MainMenu.enabled = true;
+        MainMenu.gameObject.SetActive(true);
         //MainMenu.
     }
 
@@ -88,6 +100,18 @@ public class StartMenu : MonoBehaviour
     public void ActivateScene()
     {
         async.allowSceneActivation = true;
+    }
+
+    public void SetMusic(UnityEngine.Object set)
+    {
+        float volume = ((Slider) set).value;
+        audio_volume = volume;
+        audio_player.volume = volume;
+    }
+
+    void VolumeRaise()
+    {
+        
     }
 
 

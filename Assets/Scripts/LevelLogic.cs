@@ -27,8 +27,11 @@ public class LevelLogic : MonoBehaviour
 	    }
         if(player.transform.position.y < -20f)
             ResetLevel();
-        if (Input.GetKeyDown("escape"))
+	    if (Input.GetKeyDown("escape"))
+	    {
             Cursor.lockState = CursorLockMode.None;
+	        Cursor.visible = true;
+	    }
         if (Input.GetMouseButtonDown(0))
             Cursor.lockState = CursorLockMode.Locked;
     }

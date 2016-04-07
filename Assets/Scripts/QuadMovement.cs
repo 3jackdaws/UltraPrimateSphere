@@ -54,7 +54,7 @@ public class QuadMovement : MonoBehaviour {
         distToGround = GetComponent<Collider>().bounds.extents.y;
         InvokeRepeating("SetPowerUpUI", 2, 0.2f);
         InvokeRepeating("RechargeBoost", 1, 0.05f);
-        InvokeRepeating("IsGrounded", 1, 0.1f);
+        InvokeRepeating("IfGrounded", 1, 0.1f);
         _rollerballInput = new RollerballInput();
     }
 

@@ -17,8 +17,17 @@ One of my favorite games is Super Monkey Ball 2 for the GameCube.  The game star
 Levels feature floating platforms that must be traversed to reach the end, marked by a special platform.  Later levels feature moving platforms or obstacles that may knock the player off the map.  Players can use power-ups that are scattered throughout the levels to aid in their playthrough.  Some levels may require the use of a powerup, or may even require the use of multiple powerups in quick succession.
 
 ###Physics
-The game is entirely physics based.  The marble does not have a forced applied to it.  By moving forward, the marble has a torque applied to it.
+The game is entirely physics based.  In order to move forward, torque is applied to the marble.  This means that a player can build up reotational velocity while in the air.  
 
+###Installation Instructions
+1.  Clone to local machine.
+2.  Create new Unity project, including everything cloned.
+3.  Build and run.
 
+###Bugs/TODO
+1.  Make level select menu on main menu.
+2.  Make more levels
+3.  Add settins menu to in game pause menu.
 
-Players must control marble rotational velocity and speed when landing.
+###Contributors
+Ian Murphy  --  github.com/3jackdaws

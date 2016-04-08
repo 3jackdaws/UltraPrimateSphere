@@ -26,11 +26,12 @@ public class QuadMovement : MonoBehaviour {
     private RollerballInput _rollerballInput;
 
     private bool canJump = true;
+    private bool onGround = true;
 
     public bool OnGround
     {
-        set { canJump = value; }
-        get { return canJump; }
+        set { onGround = value; }
+        get { return onGround; }
     }
 	public int air_movement_speed = 10;
     private float distToGround;
@@ -45,16 +46,17 @@ public class QuadMovement : MonoBehaviour {
     private IPowerUp heldPowerup;
     public float boost_value;
     public Text PowerUpUIText;
+    private Vector3 jumpVector;
 
     void Start()
     {
 		rb = transform.parent.GetComponent<Rigidbody>();
         facing = facing2D = new Vector3(1, 0, 0);
         rb.maxAngularVelocity = 100;
-        distToGround = GetComponent<Collider>().bounds.extents.y;
+        //distToGround = GetComponent<Collider>().bounds.extents.y;
         InvokeRepeating("SetPowerUpUI", 2, 0.2f);
         InvokeRepeating("RechargeBoost", 1, 0.05f);
-        InvokeRepeating("IfGrounded", 1, 0.1f);
+        
         _rollerballInput = new RollerballInput();
     }
 
@@ -140,15 +142,15 @@ public class QuadMovement : MonoBehaviour {
 
     private void Jump()
     {
-        if (canJump)
+        if (canJump && onGround)
         {
             canJump = false;
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            rb.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
+            rb.AddForce(jumpVector * jump_force, ForceMode.Impulse);
             boostOut.volume = 0.8f;
             boostOut.pitch = 1f;
             boostOut.PlayOneShot(jump_sound);
-            
+            Invoke("ResetJump", 0.1f);
         }
     }
 
@@ -194,7 +196,6 @@ public class QuadMovement : MonoBehaviour {
 
     private void ResetJump()
     {
-        
         canJump = true;
     }
 
@@ -203,7 +204,7 @@ public class QuadMovement : MonoBehaviour {
         return Physics.Raycast(transform.transform.position, Vector3.down, distToGround + 0.03f);
     }
 
-    private void IfGrounded()
+    public void IfGrounded()
     {
         if (!canJump && isGrounded())
             canJump = true;
@@ -220,6 +221,11 @@ public class QuadMovement : MonoBehaviour {
         rb.transform.position = initialPosition;
         rb.angularVelocity = Vector3.zero;
         rb.velocity = Vector3.zero;
+    }
+
+    public void SetJumpVector(Vector3 jump)
+    {
+        jumpVector = jump;
     }
 }
 

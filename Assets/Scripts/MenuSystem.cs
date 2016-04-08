@@ -8,13 +8,12 @@ using UnityEngine.UI;
 public class MenuSystem : MonoBehaviour
 {
     public Canvas startMenu;
-    public Selectable[] menuChildren;
-    public int selected;
     public EventSystem cont;
     public Scene mainMenu;
 	void Start ()
 	{
-	    menuChildren = startMenu.GetComponentsInChildren<Selectable>();
+	    startMenu.enabled = false;
+	    cont.sendNavigationEvents = false;
 	}
 	
 	// Update is called once per frame
@@ -22,10 +21,8 @@ public class MenuSystem : MonoBehaviour
         
         if (Input.GetButtonDown("start"))
 	    {
-	       
-	            MenuToggle();
+	        MenuToggle();
 	    }
-	   
     }
 
     public void MenuToggle()
@@ -34,9 +31,9 @@ public class MenuSystem : MonoBehaviour
         {
             Time.timeScale = 0;
             startMenu.enabled = true;
-            selected = 0;
             cont.sendNavigationEvents = true;
-
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
@@ -54,6 +51,6 @@ public class MenuSystem : MonoBehaviour
 
     public void GotoMainMenu()
     {
-        SceneManager.SetActiveScene(mainMenu);
+        SceneManager.LoadScene("MainMenu");
     }
 }

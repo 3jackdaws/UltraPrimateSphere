@@ -33,8 +33,7 @@ public class Collisions : MonoBehaviour
 
     void OnCollisionEnter(Collision cevent)
     {
-        movement_script.OnGround = true;
-        Roll();
+        
         if (cevent.impulse.magnitude > distance_check)
         {
             hitsource.volume = cevent.relativeVelocity.magnitude/50;
@@ -42,12 +41,22 @@ public class Collisions : MonoBehaviour
             hitsource.PlayOneShot(hard_collide);
         }
         
+        //movement_script.SetJumpVector(cevent.contacts[0].normal.normalized);
         
+        
+    }
+
+    void OnCollisionStay(Collision col)
+    {
+        Roll();
+        movement_script.SetJumpVector(col.contacts[0].normal.normalized);
+        movement_script.OnGround = true;
     }
 
     void OnCollisionExit()
     {
         movement_script.OnGround = false;
+        Invoke("CheckGrounded", 0.1f);
         source.Pause();
     }
 
@@ -55,5 +64,10 @@ public class Collisions : MonoBehaviour
     {
         if (!source.isPlaying)
             source.UnPause();
+    }
+
+    void CheckGrounded()
+    {
+        movement_script.IfGrounded();
     }
 }

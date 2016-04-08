@@ -4,18 +4,22 @@ using Animation = UnityEngine.Animation;
 
 public class LevelLogic : MonoBehaviour
 {
-    public GameObject spawner;
-    //public Animation spawnAnimator;
-    private Vector3 spawnerInitialLocation;
+    
+    private Vector3 initialLocation;
     private GameObject player;
     public AudioSource standard_output;
     public AudioClip spawnSound;
+    public int reset_level;
+    public ParticleSystem spawn_effect;
+    private bool resetting = false;
 	// Use this for initialization
 	void Start ()
 	{
-	    spawnerInitialLocation = spawner.transform.position;
+	    
         player = GameObject.Find("Player");
-        player.GetComponentInChildren<QuadMovement>().SetInitialPos(spawnerInitialLocation + Vector3.up);
+        initialLocation = player.transform.position;
+        ResetLevel();
+        //player.GetComponentInChildren<QuadMovement>().SetInitialPos(initialLocation);
 	    
 	}
 	
@@ -25,7 +29,7 @@ public class LevelLogic : MonoBehaviour
 	    {
 	        ResetLevel();
 	    }
-        if(player.transform.position.y < -20f)
+        if(player.transform.position.y < reset_level)
             ResetLevel();
 	    if (Input.GetKeyDown("escape"))
 	    {
@@ -38,13 +42,25 @@ public class LevelLogic : MonoBehaviour
 
     private void ResetLevel()
     {
-        standard_output.pitch = 1;
-        standard_output.PlayOneShot(spawnSound);
-        spawner.transform.position = spawnerInitialLocation;
-        player.transform.position = spawnerInitialLocation + Vector3.up*0.2f;
+        
+        if (!resetting)
+        {
+            resetting = true;
+            standard_output.pitch = 1;
+            standard_output.PlayOneShot(spawnSound);
+            Invoke("ResetPlayer", 2);
+        }
+            
+    }
+
+    void ResetPlayer()
+    {
+        player.transform.position = initialLocation;
+        ParticleSystem p = (ParticleSystem) Instantiate(spawn_effect);
+        p.loop = false;
         player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        spawner.GetComponent<UnityEngine.Animation>().Play();
         player.GetComponentInChildren<QuadMovement>().SetFacingVector(Vector3.right);
+        resetting = false;
     }
 }

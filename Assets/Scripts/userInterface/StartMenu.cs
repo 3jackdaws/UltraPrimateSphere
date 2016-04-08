@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+
 public class StartMenu : MonoBehaviour
 {
     public AudioSource audio_player;
@@ -20,6 +22,8 @@ public class StartMenu : MonoBehaviour
     AsyncOperation async;
     public EventSystem controller;
     private float audio_volume;
+
+    public Text sensitivity_text;
     
     // Use this for initialization
     void Start ()
@@ -109,9 +113,16 @@ public class StartMenu : MonoBehaviour
         audio_player.volume = volume;
     }
 
-    void VolumeRaise()
+    public void QuitGame()
     {
-        
+        Application.Quit();
+    }
+
+    public void SetAxisSensitivity(Slider s)
+    {
+        float sensitivity = s.value;
+        GlobalInput.SetCameraSensitivity(sensitivity);
+        sensitivity_text.text =(sensitivity*5).ToString("0");
     }
 
 

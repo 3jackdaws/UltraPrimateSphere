@@ -27,28 +27,19 @@ public class PowerupSuperspeed : MonoBehaviour, IPowerUp {
         //GetComponentInChildren<Renderer>().enabled = false;
         //this.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
         gameObject.GetComponent<Collider>().enabled = false;
-        Renderer[] all = GetComponentsInChildren<Renderer>();
-        foreach (Renderer r in all)
-        {
-            r.enabled = false;
-        }
+        gameObject.SetActive(false);
         player_object.volume = 0.9f;
         player_object.pitch = 0.7f;
         player_object.PlayOneShot(pick_up_sound);
-        StartCoroutine("Respawn");
+        Invoke("Respawn", respawn_time);
 
         
 
     }
 
-    IEnumerator Respawn()
+    void Respawn()
     {
-        yield return new WaitForSeconds(respawn_time);
-        Renderer[] all = GetComponentsInChildren<Renderer>();
-        foreach (Renderer r in all)
-        {
-            r.enabled = true;
-        }
+        gameObject.SetActive(true);
         gameObject.GetComponent<Collider>().enabled = true;
     }
 

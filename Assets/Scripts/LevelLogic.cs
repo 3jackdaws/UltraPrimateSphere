@@ -45,9 +45,12 @@ public class LevelLogic : MonoBehaviour
         
         if (!resetting)
         {
+            player.GetComponent<Renderer>().enabled = false;
+            player.GetComponent<Rigidbody>().isKinematic = true;
             resetting = true;
             standard_output.pitch = 1;
             standard_output.PlayOneShot(spawnSound);
+            player.transform.position = initialLocation;
             Invoke("ResetPlayer", 2);
         }
             
@@ -55,12 +58,26 @@ public class LevelLogic : MonoBehaviour
 
     void ResetPlayer()
     {
-        player.transform.position = initialLocation;
+        
         ParticleSystem p = (ParticleSystem) Instantiate(spawn_effect);
         p.loop = false;
         player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         player.GetComponentInChildren<QuadMovement>().SetFacingVector(Vector3.right);
+        player.GetComponent<Renderer>().enabled = true;
+        player.GetComponent<Rigidbody>().isKinematic = false;
         resetting = false;
+    }
+
+    void FirstSpawn()
+    {
+        if (!resetting)
+        {
+            player.gameObject.SetActive(false);
+            resetting = true;
+            standard_output.pitch = 1;
+            standard_output.PlayOneShot(spawnSound);
+            Invoke("ResetPlayer", 2);
+        }
     }
 }

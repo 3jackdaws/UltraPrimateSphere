@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Rotation : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject player;
 	// Use this for initialization
 	void Start () {
-        player = GameObject.Find("InternalSphere");
+        //player = GameObject.Find("InternalSphere");
         //pmove = GameObject.Find("QuadMovement");
     }
 	

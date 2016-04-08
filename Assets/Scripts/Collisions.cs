@@ -33,7 +33,8 @@ public class Collisions : MonoBehaviour
 
     void OnCollisionEnter(Collision cevent)
     {
-        
+        movement_script.SetJumpVector(cevent.contacts[0].normal.normalized);
+        movement_script.OnGround = true;
         if (cevent.impulse.magnitude > distance_check)
         {
             hitsource.volume = cevent.relativeVelocity.magnitude/50;
@@ -56,7 +57,7 @@ public class Collisions : MonoBehaviour
     void OnCollisionExit()
     {
         movement_script.OnGround = false;
-        Invoke("CheckGrounded", 0.1f);
+        //Invoke("CheckGrounded", 0.1f);
         source.Pause();
     }
 

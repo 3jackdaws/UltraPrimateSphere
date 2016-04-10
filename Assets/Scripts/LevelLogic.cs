@@ -7,7 +7,7 @@ public class LevelLogic : MonoBehaviour
     
     private Vector3 initialLocation;
     private GameObject player;
-    public AudioSource standard_output;
+    private AudioSource standard_output;
     public AudioClip spawnSound;
     public int reset_level;
     public ParticleSystem spawn_effect;
@@ -17,11 +17,13 @@ public class LevelLogic : MonoBehaviour
 	{
 	    
         player = GameObject.Find("Player");
+        standard_output = player.GetComponentsInChildren<AudioSource>()[3];
         initialLocation = player.transform.position;
         ResetLevel();
-        //player.GetComponentInChildren<QuadMovement>().SetInitialPos(initialLocation);
-	    
-	}
+        
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -48,10 +50,11 @@ public class LevelLogic : MonoBehaviour
             player.GetComponent<Renderer>().enabled = false;
             player.GetComponent<Rigidbody>().isKinematic = true;
             resetting = true;
-            standard_output.pitch = 1;
+            //standard_output.pitch = 1;
             standard_output.PlayOneShot(spawnSound);
             player.transform.position = initialLocation;
-            Invoke("ResetPlayer", 2);
+            player.GetComponentInChildren<QuadMovement>().SetFacingVector(Vector3.right+Vector3.down/2);
+            ResetPlayer();
         }
             
     }
@@ -63,7 +66,7 @@ public class LevelLogic : MonoBehaviour
         p.loop = false;
         player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        player.GetComponentInChildren<QuadMovement>().SetFacingVector(Vector3.right);
+        
         player.GetComponent<Renderer>().enabled = true;
         player.GetComponent<Rigidbody>().isKinematic = false;
         resetting = false;
@@ -77,7 +80,9 @@ public class LevelLogic : MonoBehaviour
             resetting = true;
             standard_output.pitch = 1;
             standard_output.PlayOneShot(spawnSound);
-            Invoke("ResetPlayer", 2);
+            
+            //Invoke("ResetPlayer", 2);
+            ResetPlayer();
         }
     }
 }

@@ -8,7 +8,7 @@ public class PowerupJump : MonoBehaviour, IPowerUp
     // Use this for initialization
     public int jump_force;
     public int respawn_time;
-    public AudioSource player_object;
+    private AudioSource player_object;
     public AudioClip pick_up_sound;
     public AudioClip use_sound;
     void Start()
@@ -20,7 +20,7 @@ public class PowerupJump : MonoBehaviour, IPowerUp
     void Update()
     {
         transform.transform.rotation = Quaternion.AngleAxis(0.5f, Vector3.up) * transform.rotation;
-        
+        player_object = GameObject.Find("Player").GetComponentsInChildren<AudioSource>()[3];
     }
 
     void OnTriggerEnter(Collider cevent)

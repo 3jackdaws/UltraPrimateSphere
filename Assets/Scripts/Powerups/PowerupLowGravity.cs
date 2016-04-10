@@ -5,7 +5,7 @@ public class PowerupLowGravity : MonoBehaviour, IPowerUp {
 
     public int respawn_time;
     public int low_gravity_time;
-    public AudioSource player_object;
+    private AudioSource player_object;
     public AudioClip pick_up_sound;
     public AudioClip use_sound;
 
@@ -14,6 +14,7 @@ public class PowerupLowGravity : MonoBehaviour, IPowerUp {
     void Start ()
     {
         prev_gravity = Physics.gravity;
+        player_object = GameObject.Find("Player").GetComponentsInChildren<AudioSource>()[3];
     }
 	
 	// Update is called once per frame

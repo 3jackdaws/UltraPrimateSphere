@@ -10,12 +10,12 @@ public class GoalPost : MonoBehaviour
     private Rigidbody player;
     private AsyncOperation async;
     public String next_level;
-    public AudioSource standard_source;
+    private AudioSource standard_source;
     public AudioClip portal_sound;
 	// Use this for initialization
 	void Start () {
-	
-	}
+        standard_source = GameObject.Find("Player").GetComponentsInChildren<AudioSource>()[3];
+    }
 	
 	// Update is called once per frame
 	void Update () {

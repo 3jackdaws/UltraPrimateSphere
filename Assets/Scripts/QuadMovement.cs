@@ -24,6 +24,7 @@ public class QuadMovement : MonoBehaviour {
     public float jump_force;
     public bool DebugText = true;
     private RollerballInput _rollerballInput;
+    private Collisions ccontroller;
 
     private bool canJump = true;
     private bool onGround = true;
@@ -53,6 +54,7 @@ public class QuadMovement : MonoBehaviour {
 		rb = transform.parent.GetComponent<Rigidbody>();
         facing = facing2D = new Vector3(1, 0, 0);
         rb.maxAngularVelocity = 100;
+        ccontroller = GetComponentInParent<Collisions>();
         //distToGround = GetComponent<Collider>().bounds.extents.y;
         InvokeRepeating("SetPowerUpUI", 2, 0.2f);
         InvokeRepeating("RechargeBoost", 1, 0.05f);
@@ -98,6 +100,15 @@ public class QuadMovement : MonoBehaviour {
 		rb.AddForce (torqueVector* _rollerballInput.yMove * air_movement_speed + facing2D* _rollerballInput.xMove * air_movement_speed);
     }
 
+    void OnTriggeEnter()
+    {
+        ccontroller.Roll();
+    }
+
+    void OnTriggerStay()
+    {
+        ccontroller.Roll();
+    }
     void GetRollerballInput()
     {
         _rollerballInput.xMove = Input.GetAxis("Vertical");

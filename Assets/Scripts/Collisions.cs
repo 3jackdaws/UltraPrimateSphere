@@ -14,6 +14,7 @@ public class Collisions : MonoBehaviour
     public GameObject innerSphere;
     private QuadMovement movement_script;
     public float distance_check = 125;
+    private bool isRolling;
 
     public int hitboost;
 	// Use this for initialization
@@ -28,13 +29,15 @@ public class Collisions : MonoBehaviour
 	void FixedUpdate ()
 	{
         source.pitch = 0.6f + track.velocity.magnitude / 100;
-        source.volume = track.velocity.magnitude / 50;
+        if(isRolling)
+            source.volume = track.velocity.magnitude / 25;
     }
 
     void OnCollisionEnter(Collision cevent)
     {
         movement_script.SetJumpVector(cevent.contacts[0].normal.normalized);
         movement_script.OnGround = true;
+        Roll();
         if (cevent.impulse.magnitude > distance_check)
         {
             hitsource.volume = cevent.relativeVelocity.magnitude/50;
@@ -57,14 +60,13 @@ public class Collisions : MonoBehaviour
     void OnCollisionExit()
     {
         movement_script.OnGround = false;
-        //Invoke("CheckGrounded", 0.1f);
-        source.Pause();
+        isRolling = false;
+        source.volume = 0;
     }
 
-    void Roll()
+    public void Roll()
     {
-        if (!source.isPlaying)
-            source.UnPause();
+        isRolling = true;
     }
 
     void CheckGrounded()

@@ -7,12 +7,12 @@ public class PowerupSuperspeed : MonoBehaviour, IPowerUp {
 	// Use this for initialization
     public int super_speed_force;
     public int respawn_time;
-    public AudioSource player_object;
+    private AudioSource player_object;
     public AudioClip pick_up_sound;
     public AudioClip use_sound;
 	void Start () {
-	    
-	}
+        player_object = GameObject.Find("Player").GetComponentsInChildren<AudioSource>()[3];
+    }
 	
 	// Update is called once per frame
 	public void Update ()

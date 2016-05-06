@@ -10,38 +10,77 @@ using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
+    public RectTransform titleCard;
+    public RectTransform mainMenuCard;
+    public RectTransform settingsCard;
+    public RectTransform loadingCard;
+
     public AudioSource audio_player;
     public AudioSource SFX;
     public AudioClip select;
     public AudioClip move;
-    public Canvas title;
-    public Canvas MainMenu;
+    
     public Scene level1;
     public string levelName;
-    public Canvas loadingScreen;
+    
     AsyncOperation async;
     public EventSystem controller;
     private float audio_volume;
+    private float camera_sensitivity;
 
     public Text sensitivity_text;
+
+    private String playerSensitivityPreferenceKeyName = "CameraSensitivity";
+    private String playerMusicVolumePreferenceKeyName = "MusicVolume";
     
     // Use this for initialization
     void Start ()
 	{
-        title.gameObject.SetActive(true);
-	    title.enabled = true;
-        audio_volume = 1;
+        //Load player preferences
+        float localAudioVolume = -1;
+        float localCameraSensitivity = -1;
+        try
+        {
+            localAudioVolume = PlayerPrefs.GetFloat(playerMusicVolumePreferenceKeyName);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Console.WriteLine("Setting player audio preference to default value: 0.7 ");
+            localAudioVolume = 0.7f;
+            PlayerPrefs.SetFloat(playerMusicVolumePreferenceKeyName, 0.7f);
+        }
+        try
+        {
+            localCameraSensitivity = PlayerPrefs.GetFloat(playerSensitivityPreferenceKeyName);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Console.WriteLine("Setting player camera sensitivity preference to default value: 0.5 ");
+            localCameraSensitivity = 0.5f;
+            PlayerPrefs.SetFloat(playerSensitivityPreferenceKeyName, 0.5f);
+        }
+
+        //Make sure all panels are active
+        titleCard.gameObject.SetActive(true);
+        mainMenuCard.gameObject.SetActive(true);
+        loadingCard.gameObject.SetActive(true);
+        settingsCard.gameObject.SetActive(false);
+
        
-	    MainMenu.gameObject.SetActive(false);
-        //MainMenu.GetComponents<Component>()[2].gameObject.SetActive(false);
+
+        audio_volume = localAudioVolume;
+        camera_sensitivity = localCameraSensitivity;
+        //preset sliders
+        
         controller.sendNavigationEvents = false;
-        loadingScreen.enabled = false;
-        audio_player.time = 320 ;
+        audio_player.time = 320;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("start") || Input.GetButtonDown("Jump") && title.enabled)
+        if ((Input.GetButtonDown("start") || Input.GetButtonDown("Jump")) && !audio_player.isPlaying)
         {
             Select();
             GotoMainMenu();
@@ -50,8 +89,6 @@ public class StartMenu : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump"))
             Select();
-        if (audio_player.isPlaying && audio_player.volume < audio_volume)
-            audio_player.volume += 0.01f;
         if (async != null)
 	    {
 	        Debug.LogWarning("Percent Load: " + async.progress);
@@ -62,9 +99,10 @@ public class StartMenu : MonoBehaviour
     {
         audio_player.volume = 0;
         audio_player.Play();
-        title.enabled = false;
-        MainMenu.gameObject.SetActive(true);
-        //MainMenu.
+        InvokeRepeating("FadeMusicVolume", 0, 0.03f);
+        titleCard.gameObject.SetActive(false);
+        mainMenuCard.gameObject.SetActive(true);
+        
     }
 
     public void StartGame()
@@ -86,9 +124,9 @@ public class StartMenu : MonoBehaviour
 
     public void StartLoading()
     {
-        loadingScreen.enabled = true;
-        title.enabled = false;
-        MainMenu.enabled = false;
+        loadingCard.gameObject.SetActive(true);
+        titleCard.gameObject.SetActive(true);
+        mainMenuCard.gameObject.SetActive(true);
         StartCoroutine("load");
     }
 
@@ -111,6 +149,7 @@ public class StartMenu : MonoBehaviour
         float volume = ((Slider) set).value;
         audio_volume = volume;
         audio_player.volume = volume;
+        PlayerPrefs.SetFloat(playerMusicVolumePreferenceKeyName, volume);
     }
 
     public void QuitGame()
@@ -121,9 +160,24 @@ public class StartMenu : MonoBehaviour
     public void SetAxisSensitivity(Slider s)
     {
         float sensitivity = s.value;
-        GlobalInput.SetCameraSensitivity(sensitivity);
+        PlayerPrefs.SetFloat(playerSensitivityPreferenceKeyName, sensitivity);
         sensitivity_text.text =(sensitivity*5).ToString("0");
     }
 
+    private void FadeMusicVolume()
+    {
+        if (audio_player.volume < audio_volume)
+            audio_player.volume += 0.01f;
+        else
+        {
+            CancelInvoke("FadeMusicVolume");
+        }
+    }
+
+    public void SetSliderValues()
+    {
+        GameObject.Find("SSlider").GetComponent<Slider>().value = camera_sensitivity;
+        GameObject.Find("MVSlider").GetComponent<Slider>().value = audio_volume;
+    }
 
 }

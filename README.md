@@ -11,6 +11,7 @@
 
 ###Inspiration
 One of my favorite games is Super Monkey Ball 2 for the GameCube.  The game starts out relatively easy, but becomes increasingly difficult.  I couldn't even complete some of the levels until a year or two ago.
+<br>
 ![](http://revolutionmedia.ign.com/revolution/image/article/703/703834/super-monkey-ball-banana-blitz-20060428053706095.jpg)
 
 ###Level Design
@@ -25,9 +26,11 @@ The game is entirely physics based.  In order to move forward, torque is applied
 3.  Build and run.
 
 ###Bugs/TODO
-1.  Make level select menu on main menu.
+1.  Make level select menu on main menu actually select a level.
 2.  Make more levels
 3.  Add settins menu to in game pause menu.
+4.  Unity physics are garbage. 
+5.  Make marble material selection screen. 
 
-###Contributors
+  ###Contributors
 Ian Murphy  --  github.com/3jackdaws

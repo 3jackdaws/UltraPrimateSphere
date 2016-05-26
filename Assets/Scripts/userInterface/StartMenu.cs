@@ -27,11 +27,13 @@ public class StartMenu : MonoBehaviour
     public EventSystem controller;
     private float audio_volume;
     private float camera_sensitivity;
+    private int smb_controls;
 
     public Text sensitivity_text;
 
     private String playerSensitivityPreferenceKeyName = "CameraSensitivity";
     private String playerMusicVolumePreferenceKeyName = "MusicVolume";
+    private String playerSMBControlPreferenceKey = "SMBControls";
     
     // Use this for initialization
     void Start ()
@@ -61,6 +63,17 @@ public class StartMenu : MonoBehaviour
             localCameraSensitivity = 0.5f;
             PlayerPrefs.SetFloat(playerSensitivityPreferenceKeyName, 0.5f);
         }
+        try
+        {
+            smb_controls = PlayerPrefs.GetInt(playerSMBControlPreferenceKey);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Console.WriteLine("Setting player smb preference to default value: 0 ");
+            smb_controls = 0;
+            PlayerPrefs.SetInt(playerSMBControlPreferenceKey, 0);
+        }
 
         //Make sure all panels are active
         titleCard.gameObject.SetActive(true);
@@ -75,7 +88,7 @@ public class StartMenu : MonoBehaviour
         //preset sliders
         
         controller.sendNavigationEvents = false;
-        audio_player.time = 320;
+        audio_player.time = 422;
     }
 	
 	// Update is called once per frame
@@ -178,6 +191,24 @@ public class StartMenu : MonoBehaviour
     {
         GameObject.Find("SSlider").GetComponent<Slider>().value = camera_sensitivity;
         GameObject.Find("MVSlider").GetComponent<Slider>().value = audio_volume;
+        bool smb = false;
+        if (smb_controls == 1)
+            smb = true;
+        GameObject.Find("SMBControl").GetComponent<Toggle>().isOn = smb;
+    }
+
+    public void SetSMBPrefs(Toggle s)
+    {
+        int smbpref = 0;
+        if (s.isOn)
+            smbpref = 1;
+        PlayerPrefs.SetInt(playerSMBControlPreferenceKey, smbpref);
+    }
+
+    public void LoadLevel(String level)
+    {
+        levelName = level;
+        StartCoroutine("load");
     }
 
 }

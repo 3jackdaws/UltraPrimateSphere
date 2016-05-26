@@ -48,10 +48,19 @@ public class QuadMovement : MonoBehaviour {
     public float boost_value;
     public Text PowerUpUIText;
     private Vector3 jumpVector;
-
+    private bool SMBBehavior;
+    private int smb_controls;
     void Start()
     {
-		rb = transform.parent.GetComponent<Rigidbody>();
+        try
+        {
+            smb_controls = PlayerPrefs.GetInt("SMBControls");
+        }
+        catch (Exception e)
+        {
+            smb_controls = 0;
+        }
+        rb = transform.parent.GetComponent<Rigidbody>();
         facing = facing2D = new Vector3(1, 0, 0);
         rb.maxAngularVelocity = 100;
         ccontroller = GetComponentInParent<Collisions>();
@@ -111,20 +120,33 @@ public class QuadMovement : MonoBehaviour {
     }
     void GetRollerballInput()
     {
-        _rollerballInput.xMove = Input.GetAxis("Vertical");
-        _rollerballInput.yMove = Input.GetAxis("Horizontal");
-        _rollerballInput.xCamera= 0;
-        _rollerballInput.yCamera = 0;
-        if (Cursor.lockState == CursorLockMode.Locked)
+        if (smb_controls == 0)
         {
-            _rollerballInput.xCamera = Input.GetAxis("Mouse X");
-            _rollerballInput.yCamera = 0.1f * Input.GetAxis("Mouse Y");
+            _rollerballInput.xMove = Input.GetAxis("Vertical");
+            _rollerballInput.yMove = Input.GetAxis("Horizontal");
+            _rollerballInput.xCamera= 0;
+            _rollerballInput.yCamera = 0;
+            if (Cursor.lockState == CursorLockMode.Locked)
+            {
+                _rollerballInput.xCamera = Input.GetAxis("Mouse X");
+                _rollerballInput.yCamera = 0.1f * Input.GetAxis("Mouse Y");
+            }
+            else
+            {
+                _rollerballInput.xCamera = Input.GetAxis("CameraHorizontal");
+                _rollerballInput.yCamera = 0.05f * Input.GetAxis("CameraVertical");
+            }
         }
         else
         {
-            _rollerballInput.xCamera = Input.GetAxis("CameraHorizontal");
-            _rollerballInput.yCamera = 0.05f * Input.GetAxis("CameraVertical");
+            _rollerballInput.xCamera = 0;
+            _rollerballInput.yCamera = 0;
+            _rollerballInput.xMove = Input.GetAxis("Vertical");
+            _rollerballInput.xCamera = Input.GetAxis("Horizontal");
+
+
         }
+        
     }
 
     public Vector3 GetFacing()

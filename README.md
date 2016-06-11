@@ -1,4 +1,5 @@
 # UltraPrimateSphere
+##This project is "completed" and will likely never be touched again
 <p>Ultra Primate Sphere is the working name for a physics based marble roller ball game created in Unity.  The goal of the game is to get the starting marble player object to the end of the level.  
 </p>
 ![](https://raw.githubusercontent.com/3jackdaws/UltraPrimateSphere/master/Screenshots/title.jpg)
@@ -26,11 +27,11 @@ The game is entirely physics based.  In order to move forward, torque is applied
 3.  Build and run.
 
 ###Bugs/TODO
-1.  Make level select menu on main menu actually select a level.
+1.  Make level select menu on main menu actually select a level. -- DONE
 2.  Make more levels
 3.  Add settins menu to in game pause menu.
 4.  Unity physics are garbage. 
 5.  Make marble material selection screen. 
 
-  ###Contributors
+###Contributors
 Ian Murphy  --  github.com/3jackdaws
